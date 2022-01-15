@@ -15,31 +15,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.unidac.projetolanche.domain.Usuario;
-import com.unidac.projetolanche.domain.services.UsuarioService;
+import com.unidac.projetolanche.domain.Lanche;
+import com.unidac.projetolanche.domain.services.LancheService;
 
 @RestController
-@RequestMapping(value = "/usuarios")
-public class UsuarioResource {
+@RequestMapping(value = "/lanches")
+public class LancheResource {
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private LancheService LancheService;
+	
 	
 	@GetMapping
-	public ResponseEntity<List<Usuario>> findAll() {
-		List<Usuario> list = usuarioService.findAll();
+	public ResponseEntity<List<Lanche>> findAll() {
+		List<Lanche> list = LancheService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
-		Usuario obj = usuarioService.findById(id);
+	public ResponseEntity<Lanche> findById(@PathVariable Long id) {
+		Lanche obj = LancheService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuario> insert(@RequestBody Usuario obj) {
-		obj = usuarioService.insert(obj);
+	public ResponseEntity<Lanche> insert(@RequestBody Lanche obj) {
+		obj = LancheService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
@@ -47,13 +48,13 @@ public class UsuarioResource {
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		usuarioService.delete(id);
+		LancheService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario obj) {
-		obj = usuarioService.update(id, obj);
+	public ResponseEntity<Lanche> update(@PathVariable Long id, @RequestBody Lanche obj) {
+		obj = LancheService.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
 

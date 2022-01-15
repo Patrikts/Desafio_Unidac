@@ -11,23 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_usuario")
-public class Usuario implements Serializable {
+@Table(name = "tb_colaborador")
+public class Colaborador implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String cpf;
 	
-	public Usuario() {
+	public Colaborador() {
+		
 	}
 
-	public Usuario(Long id, String nome, String cpf) {
+	public Colaborador(Long id, String nome, String cpf) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -71,7 +72,8 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Colaborador other = (Colaborador) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }
