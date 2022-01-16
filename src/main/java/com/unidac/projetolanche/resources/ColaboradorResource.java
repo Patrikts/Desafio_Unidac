@@ -22,7 +22,6 @@ public class ColaboradorResource {
 	@Autowired
 	private ColaboradorService service;
 	
-	//Colaborador Original
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Colaborador>> findAll() {
 		List<Colaborador> list = service.findAll();
@@ -36,7 +35,6 @@ public class ColaboradorResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	//Sem DTO
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Colaborador obj) {
 		obj = service.insert(obj);
@@ -45,7 +43,6 @@ public class ColaboradorResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	//Sem DTO
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Colaborador obj, @PathVariable Long id) {
 		obj.setId(id);
