@@ -21,7 +21,7 @@ public class Colaborador implements Serializable {
 
 	private String nome;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false, length = 14)
 	private String cpf;
 	
 	public Colaborador() {
