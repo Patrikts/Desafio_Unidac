@@ -19,18 +19,28 @@ public class ColaboradorLanche implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "colaborador_id")
+	@Column(name = "colaborador_id", nullable = false, unique = true)
 	private Long colaborador;
 	
-	@Column(name = "lanche_id")
+	private String nome;
+	
+	private String cpf;
+	
+	@Column(name = "lanche_id", nullable = false, unique = true)
 	private Long lanche;
+	
+	private String nomeL;
+	
 	
 	public ColaboradorLanche() {
 	}
 	
-	public ColaboradorLanche(Long colaborador, Long lanche) {
+	public ColaboradorLanche(Long colaborador, Long lanche, String nome, String cpf, String nomeL) {
 		this.colaborador = colaborador;
 		this.lanche = lanche;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.nomeL = nomeL;
 	}
 
 	public Long getId() {
@@ -55,6 +65,30 @@ public class ColaboradorLanche implements Serializable {
 
 	public void setLanche(Long lanche) {
 		this.lanche = lanche;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getNomeL() {
+		return nomeL;
+	}
+
+	public void setNomeL(String nomeL) {
+		this.nomeL = nomeL;
 	}
 
 	@Override

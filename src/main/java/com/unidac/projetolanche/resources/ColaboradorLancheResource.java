@@ -23,8 +23,8 @@ public class ColaboradorLancheResource {
 	private ColaboradorLancheService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ColaboradorLanche>> findAll() {
-		List<ColaboradorLanche> list = service.findAll();
+	public ResponseEntity<List<ColaboradorLanche>> findAll(ColaboradorLanche colaboradorLanche) {
+		List<ColaboradorLanche> list = service.findAll(colaboradorLanche);
 		return ResponseEntity.ok().body(list);
 	}
 	

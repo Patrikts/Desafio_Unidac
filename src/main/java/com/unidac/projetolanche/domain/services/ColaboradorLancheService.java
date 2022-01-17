@@ -23,7 +23,7 @@ public class ColaboradorLancheService {
 	@Autowired
 	private LancheService lancheService;
 	
-	public List<ColaboradorLanche> findAll() {
+	public List<ColaboradorLanche> findAll(ColaboradorLanche obj) {
 		return repo.findAll();
 	}
 	
@@ -35,17 +35,19 @@ public class ColaboradorLancheService {
 	public ColaboradorLanche insert(ColaboradorLanche obj) throws Exception {
 		obj.setId(null);
 		Colaborador col = colaboradorService.find(obj.getColaborador());
-		
+		obj.setNome(col.getNome());
+		System.out.println("Aqui: " + obj.getNome());
+		obj.setCpf(col.getCpf());
 		if (col.getId() == null || !col.getId().equals(obj.getColaborador())) {
 			throw new Exception("Por favor cadastrar o colaborador ou o Colaborador %s não pertece a este pedido" + col.getNome());
 		}
 		
 		Lanche lan = lancheService.findById(obj.getLanche());
-		
+		obj.setNomeL(lan.getNome());
 		if (lan.getId() == null || !lan.getId().equals(obj.getLanche())) {
 			throw new Exception("Por favor cadastrar o lanche ou o Lanche %s não pertece a este pedido" + lan.getNome());
 		}
-
+		
 		obj = repo.save(obj);
 		return obj;
 	}
