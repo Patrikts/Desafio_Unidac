@@ -23,7 +23,7 @@ public class ColaboradorLancheService {
 	@Autowired
 	private LancheService lancheService;
 	
-	public List<ColaboradorLanche> findAll(ColaboradorLanche obj) {
+	public List<ColaboradorLanche> findAll() {
 		return repo.findAll();
 	}
 	
