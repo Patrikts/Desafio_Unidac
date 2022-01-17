@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.unidac.projetolanche.domain.Lanche;
 import com.unidac.projetolanche.repositories.LancheRepository;
@@ -25,8 +26,10 @@ public class LancheService {
 		return obj.orElse(null);
 	}
 
-	public Lanche insert(Lanche Lanche) {
-		return LancheRepository.save(Lanche);
+	@Transactional
+	public Lanche insert(Lanche lanche) {
+		lanche.setId(null);
+		return LancheRepository.save(lanche);
 
 	}
 

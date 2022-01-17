@@ -11,24 +11,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_lanche")
-public class Lanche implements Serializable {
+@Table(name = "tb_colaborador_lanche")
+public class ColaboradorLanche implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true)
-	private String nome;
+	@Column(name = "colaborador_id")
+	private Long colaborador;
 	
-	public Lanche() {
+	@Column(name = "lanche_id")
+	private Long lanche;
+	
+	public ColaboradorLanche() {
 	}
-
-	public Lanche(Long id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
+	
+	public ColaboradorLanche(Long colaborador, Long lanche) {
+		this.colaborador = colaborador;
+		this.lanche = lanche;
 	}
 
 	public Long getId() {
@@ -39,12 +41,20 @@ public class Lanche implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Long getColaborador() {
+		return colaborador;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setColaborador(Long colaborador) {
+		this.colaborador = colaborador;
+	}
+
+	public Long getLanche() {
+		return lanche;
+	}
+
+	public void setLanche(Long lanche) {
+		this.lanche = lanche;
 	}
 
 	@Override
@@ -60,7 +70,7 @@ public class Lanche implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Lanche other = (Lanche) obj;
+		ColaboradorLanche other = (ColaboradorLanche) obj;
 		return Objects.equals(id, other.id);
 	}
 }
