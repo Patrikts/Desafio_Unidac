@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,24 +23,24 @@ import com.unidac.projetolanche.domain.services.LancheService;
 public class LancheResource {
 	
 	@Autowired
-	private LancheService LancheService;
+	private LancheService service;
 	
 	
 	@GetMapping
 	public ResponseEntity<List<Lanche>> findAll() {
-		List<Lanche> list = LancheService.findAll();
+		List<Lanche> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Lanche> findById(@PathVariable Long id) {
-		Lanche obj = LancheService.findById(id);
+		Lanche obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
 	public ResponseEntity<Lanche> insert(@RequestBody Lanche obj) {
-		obj = LancheService.insert(obj);
+		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
@@ -48,14 +48,15 @@ public class LancheResource {
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		LancheService.delete(id);
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Lanche> update(@PathVariable Long id, @RequestBody Lanche obj) {
-		obj = LancheService.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Lanche obj, @PathVariable Long id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }

@@ -15,27 +15,27 @@ import com.unidac.projetolanche.repositories.LancheRepository;
 public class LancheService {
 
 	@Autowired
-	private LancheRepository LancheRepository;
+	private LancheRepository repo;
 
 	public List<Lanche> findAll() {
-		return LancheRepository.findAll();
+		return repo.findAll();
 	}
 
 	public Lanche findById(Long id) {
-		Optional<Lanche> obj = LancheRepository.findById(id);
+		Optional<Lanche> obj = repo.findById(id);
 		return obj.orElse(null);
 	}
 
 	@Transactional
 	public Lanche insert(Lanche lanche) {
 		lanche.setId(null);
-		return LancheRepository.save(lanche);
+		return repo.save(lanche);
 
 	}
 
 	public void delete(Long id) {
 		try {
-			LancheRepository.deleteById(id);
+			repo.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			if (id == null) {
 				System.out.print(e.getMessage());
@@ -43,13 +43,13 @@ public class LancheService {
 		}
 	}
 
-	public Lanche update(Long id, Lanche obj) {
-		Lanche entity = LancheRepository.getById(id);
-		updateData(entity, obj);
-		return LancheRepository.save(entity);
+	public Lanche update(Lanche obj) {
+		Lanche newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
-	private void updateData(Lanche entity, Lanche obj) {
-		entity.setNome(obj.getNome());
+	private void updateData(Lanche newObj, Lanche obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
