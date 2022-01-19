@@ -4,7 +4,7 @@ Link para o site da parte backend publicado no Heroku: https://lanche-unidac.her
 
 Aplicação para teste até o momento via Postman
   
-  1.1 - Implementando Frontend foi implementado mas o cors para o heroku estava dando problema, então a aplicação está funcionando tanto você utilizando o link no Postman, por favor faça o clone da aplicação e suba localmente e realize o teste no link do heroku para exibir os resultados.
+  1.1 - Frontend foi implementado , então a aplicação está funcionando tanto no Heroku e utilizando o link no Postman.
 
   1.2 - No pedido por favor fazer o teste pelo heroku pois pelo tempo que eu tive fora do trabalho foi o que consegui fazer.
   
