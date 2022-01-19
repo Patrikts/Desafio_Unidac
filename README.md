@@ -1,6 +1,6 @@
 # Desafio_Unidac
 
-Link para o site da parte backend publicado no Heroku: https://lanche-unidac.herokuapp.com/
+Link para o site publicado no Heroku: https://lanche-unidac.herokuapp.com/
 
 
 Aplicação disponível, por favor clique no link para testar, vale ressaltar que e só você pegar o link do Heroku para simular via Postman o pedido.
