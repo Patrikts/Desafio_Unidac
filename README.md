@@ -2,7 +2,9 @@
 
 Link para o site da parte backend publicado no Heroku: https://lanche-unidac.herokuapp.com/
 
-Aplicação para teste até o momento via Postman
+
+Aplicação disponível, por favor clique no link para testar, vale ressaltar que e só você pegar o link do Heroku para simular via Postman o pedido.
+JSON disponível abaixo para o teste de pedido, a listagem está disponível no Heroku e só você clicar no carrinho e vai visualizar a lista dos pedidos.
   
   1.1 - Frontend foi implementado , então a aplicação está funcionando tanto no Heroku e utilizando o link no Postman.
 
